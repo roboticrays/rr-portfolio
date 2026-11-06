@@ -1,0 +1,16 @@
+# Local caches and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+
+# Keep large master captures outside the web repository.
+3d_models/
+rendered_imgs_1/

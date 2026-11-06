@@ -1,0 +1,54 @@
+[
+  {
+    "file": "media/models/ball-wireframe.glb",
+    "vertices": 602,
+    "simplified_triangles": 1197,
+    "line_segments": 1798,
+    "bytes": 15324,
+    "source": "3d_models/ball/exported/model.obj",
+    "source_triangles": 1999414,
+    "floor_plane": [
+      -0.050274822394570484,
+      -0.022263899565902086,
+      0.998487236277617,
+      -0.9906938693830144
+    ],
+    "floor_clearance": 0.35
+  },
+  {
+    "file": "media/models/wooden-toy-wireframe.glb",
+    "vertices": 1613,
+    "simplified_triangles": 3190,
+    "line_segments": 4802,
+    "bytes": 39484,
+    "source": "3d_models/wooden_toy/exported/model.obj",
+    "source_triangles": 1999356,
+    "floor_plane": [
+      -0.015941196148585222,
+      -0.005262367199034708,
+      0.9998590829495999,
+      -0.6872997086607068
+    ],
+    "floor_clearance": 0.35
+  },
+  {
+    "file": "media/models/shoe-wireframe.glb",
+    "vertices": 1194,
+    "simplified_triangles": 2399,
+    "line_segments": 3585,
+    "bytes": 29628,
+    "source": "3d_models/shoe/exported/model.obj",
+    "source_triangles": 2999991,
+    "support_crop": {
+      "deck_plane": [
+        0.0463706739,
+        -0.00070423192,
+        0.998924053,
+        -6.878881496
+      ],
+      "deck_clearance": 0.14,
+      "footprint_margin": 0.25,
+      "note": "Complete box and capture floor removed; dominant shoe component retained."
+    }
+  }
+]

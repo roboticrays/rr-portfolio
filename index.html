@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>The Scan Collection — Robotic Rays</title>
+  <meta name="description" content="An evolving collection of physical objects, captured in 3D by Robotic Rays. Explore the details, explore lightweight wireframes and watch rendered videos of the reconstructions.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/catalogue.js" defer></script>
+  <script src="assets/app.js" defer></script>
+  <script src="assets/reconstruction.js" defer></script>
+</head>
+<body>
+  <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 24 24"><path d="M14.2 6.2a5 5 0 0 0-6.4 6.4l-4.6 4.6a2.1 2.1 0 0 0 3 3l4.6-4.6a5 5 0 0 0 6.4-6.4L14 12l-2-2 2.2-3.8Z"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8l9-5Zm0 9 9-4m-9 4L3 8m9 4v9M7.5 5.5l9 5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7V5Z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 6-6 4 4 3-3 5 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-5 6-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 2 2-2a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(1 0) scale(.9)"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#collection">Skip to collection</a>
+  <header class="site-header wrap">
+    <a class="brand" href="https://roboticrays.com" aria-label="Robotic Rays main website"><img src="media/logos/robotic-rays-logo-positive.png" width="1222" height="401" alt="Robotic Rays"></a>
+    <a class="header-collection" href="#collection"><span class="live-dot"></span>The scan collection</a>
+    <a class="header-contact" href="mailto:info@roboticrays.com" aria-label="Start a conversation by email"><span>Start a conversation</span> <svg class="icon"><use href="#i-arrow"/></svg></a>
+  </header>
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="tiny-cross">+</span> An archive of the physical</span>
+        <h1 id="hero-title">Real objects.<br>Every <span class="italic">detail.</span></h1>
+        <p class="hero-description">A closer look at the things around us.<br>Captured in 3D. Ready to explore.</p>
+        <a class="collection-link" href="#collection">Enter the collection <span class="round-button"><svg class="icon"><use href="#i-down"/></svg></span></a>
+        <div class="hero-note"><span class="coordinate-line"></span><span>Shape. Surface. A new perspective.</span></div>
+      </div>
+      <figure class="hero-display reconstruction-display">
+        <div class="feature-top"><span class="eyebrow">Physical → Digital</span></div>
+        <div class="reconstruction-stage" id="reconstruction-stage" aria-busy="true">
+          <img class="reconstruction-poster" src="media/images/shoe-orbit/shoe-20.webp?v=textured-1" width="960" height="720" fetchpriority="high" alt="A perspective RGB render of the scanned shoe">
+          <canvas id="reconstruction-canvas" data-model="media/models/shoe-wireframe.glb" role="img" aria-label="A perspective colour render becomes a shoe wireframe from left to right, with a very slow rotation"></canvas>
+          <span class="reconstruction-corner rc-one" aria-hidden="true"></span><span class="reconstruction-corner rc-two" aria-hidden="true"></span>
+          <div class="reconstruction-bottom"><span class="reconstruction-sequence">RGB <span aria-hidden="true">→</span> Reconstruction <span aria-hidden="true">→</span> Model</span><button id="reconstruction-toggle" class="reconstruction-toggle" type="button" aria-label="Pause reconstruction animation" aria-pressed="false" disabled><span class="motion-symbol" aria-hidden="true">Ⅱ</span><span class="motion-label">Pause</span></button></div>
+        </div>
+        <figcaption class="feature-caption"><div><span class="caption-category">Footwear / 3D reconstruction</span><span class="feature-name">A new perspective.</span></div><button class="text-button" type="button" data-open="shoe" data-mode="model">Explore wireframe <svg class="icon"><use href="#i-arrow"/></svg></button></figcaption>
+      </figure>
+    </section>
+    <div class="archive-strip wrap"><span><span class="live-dot"></span> An evolving collection</span><span>Physical → Digital</span><span class="mono">03 scans &nbsp; / &nbsp; 07 on the horizon</span></div>
+    <section class="collection-section wrap" id="collection" aria-labelledby="collection-title">
+      <div class="section-topline"><span class="eyebrow">01 / The collection</span><span class="eyebrow quiet">Look closer. There’s more to see.</span></div>
+      <div class="collection-heading"><h2 id="collection-title">A different <span class="italic">dimension.</span></h2><span class="collection-total mono">[ 003 objects ]</span></div>
+      <div class="collection-toolbar"><div class="filters" role="group" aria-label="Filter objects by category"><button class="filter active" data-filter="all" aria-pressed="true">All objects <sup>03</sup></button><button class="filter" data-filter="Footwear" aria-pressed="false">Footwear <sup>01</sup></button><button class="filter" data-filter="Sport" aria-pressed="false">Sport <sup>01</sup></button><button class="filter" data-filter="Play" aria-pressed="false">Play <sup>01</sup></button></div><span class="toolbar-hint"><svg class="icon"><use href="#i-cube"/></svg> Open an object to explore</span></div>
+      <div class="object-grid" id="object-grid"></div>
+      <p class="collection-footnote"><span class="tiny-cross">+</span> Real photographs. Scan-derived wireframes. Rendered 3D videos.</p>
+      <noscript><p>Enable JavaScript to use the interactive viewer. You can still watch the <a href="media/video/shoe-showroom.mp4">shoe</a>, <a href="media/video/ball-showroom.mp4">ball</a> and <a href="media/video/wooden-toy-showroom.mp4">wooden toy</a> rendered videos.</p></noscript>
+    </section>
+    <section class="horizon-section" aria-labelledby="horizon-title"><div class="wrap">
+      <div class="section-topline"><span class="eyebrow">02 / On the horizon</span><span class="planned-key"><span class="hollow-dot"></span> Planned studies</span></div>
+      <div class="horizon-heading"><h2 id="horizon-title">New forms.<br><span class="italic">Next perspectives.</span></h2><p>The collection keeps growing.<br>A few things we’d like to look at next.</p></div>
+      <div class="future-grid" id="future-grid"></div>
+      <p class="horizon-note">Exploration directions · These objects have not yet been scanned.</p>
+    </div></section>
+    <section class="contact-section wrap" id="contact"><span class="eyebrow">Your object could be next.</span><a class="contact-title" href="mailto:info@roboticrays.com">Let’s add a <span class="italic">dimension.</span><span class="contact-arrow"><svg class="icon"><use href="#i-arrow"/></svg></span></a><div class="contact-bottom"><a href="mailto:info@roboticrays.com">info@roboticrays.com</a><span>From the physical world, with detail.</span></div></section>
+  </main>
+  <footer class="site-footer wrap"><span>© <span id="year">2026</span> Robotic Rays</span><span class="footer-center">The Scan Collection / Vol. 01</span><a href="https://roboticrays.com">Back to Robotic Rays <svg class="icon"><use href="#i-arrow"/></svg></a></footer>
+  <dialog class="object-dialog" id="object-dialog" aria-labelledby="viewer-title">
+    <div class="viewer-shell">
+      <header class="viewer-header"><span class="viewer-brand">Robotic Rays <span>/ Collection</span></span><div class="viewer-navigation"><button class="icon-button" id="prev-object" aria-label="Previous object"><svg class="icon"><use href="#i-left"/></svg></button><span class="mono" id="viewer-position">01 / 03</span><button class="icon-button" id="next-object" aria-label="Next object"><svg class="icon"><use href="#i-right"/></svg></button><span class="nav-divider"></span><button class="icon-button close-button" id="close-viewer" autofocus aria-label="Close object viewer"><svg class="icon"><use href="#i-close"/></svg></button></div></header>
+      <div class="viewer-layout">
+        <div class="viewer-media">
+          <div class="viewer-tabs" role="tablist" aria-label="Object presentation"><button id="tab-image" class="viewer-tab active" role="tab" aria-selected="true" aria-controls="panel-image" data-view="image"><svg class="icon"><use href="#i-image"/></svg> Image</button><button id="tab-model" class="viewer-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-model" data-view="model"><svg class="icon"><use href="#i-cube"/></svg> 3D wireframe</button><button id="tab-film" class="viewer-tab" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-film" data-view="film"><svg class="icon"><use href="#i-play"/></svg> Rendered video</button></div>
+          <div class="viewer-stage" id="viewer-stage">
+            <div id="panel-image" class="media-panel image-panel" role="tabpanel" aria-labelledby="tab-image"><img id="viewer-image" alt="" width="1440" height="1080"><span class="image-label" id="image-label">Object photograph</span></div>
+            <div id="panel-model" class="media-panel model-panel" role="tabpanel" aria-labelledby="tab-model" hidden><span class="demo-badge model-preview-badge" role="note" title="Wireframe preview. The full 3D model will follow." aria-label="In progress: wireframe preview. The full 3D model will follow."><svg class="icon" aria-hidden="true"><use href="#i-tools"/></svg> In progress</span><model-viewer id="model-viewer" camera-controls touch-action="pan-y" shadow-intensity="0" shadow-softness="1" exposure="1" environment-image="neutral" camera-orbit="30deg 55deg auto" interaction-prompt="auto" loading="eager" alt="Interactive wireframe of the scanned object"><span class="model-loading" slot="poster">Preparing your view…</span></model-viewer><div class="model-error" id="model-error" hidden>3D couldn’t load on this browser. Try the Image or Rendered video view.</div><div class="model-controls"><button class="small-control" id="rotate-model" aria-pressed="false"><svg class="icon"><use href="#i-reset"/></svg><span>Auto rotate</span></button><button class="small-control" id="reset-model"><svg class="icon"><use href="#i-cube"/></svg> Reset view</button></div></div>
+            <div id="panel-film" class="media-panel film-panel" role="tabpanel" aria-labelledby="tab-film" hidden><video id="viewer-video" controls playsinline loop preload="none"></video><p class="film-error" id="film-error" hidden>The rendered video couldn’t load. Please try again.</p></div>
+            <button class="icon-button expand-button" id="expand-stage" aria-label="Enter fullscreen"><svg class="icon"><use href="#i-expand"/></svg></button>
+          </div>
+          <div class="viewer-media-footer"><span id="viewer-hint">The physical object, photographed.</span><span class="mono" id="viewer-format">PHOTOGRAPH</span></div>
+        </div>
+        <aside class="viewer-details"><span class="eyebrow" id="viewer-id">RR—001 / Footwear</span><h2 id="viewer-title">Leather<br>sneaker</h2><p class="viewer-description" id="viewer-description"></p><div class="detail-tags" id="detail-tags"></div><div class="detail-rule"></div><p class="viewer-context" id="viewer-context">A photograph of the physical object.</p><div class="viewer-detail-bottom"><button class="share-button" id="share-object"><svg class="icon"><use href="#i-link"/></svg><span>Copy object link</span></button><a href="mailto:info@roboticrays.com">Have something to scan? <svg class="icon"><use href="#i-arrow"/></svg></a></div></aside>
+      </div>
+    </div>
+  </dialog>
+  <div class="sr-only" id="announcer" role="status" aria-live="polite"></div>
+</body>
+</html>
