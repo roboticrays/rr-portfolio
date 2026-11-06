@@ -1,6 +1,6 @@
 # Robotic Rays — The Scan Collection
 
-A static showroom for three scanned objects and seven proposed future directions. No build step or package installation is needed to view it. GitHub Pages deployment files are prepared for `portfolio.roboticrays.com`; publishing and domain setup are described in [DEPLOYMENT.md](DEPLOYMENT.md).
+A static showroom for three scanned objects and seven proposed future directions. No build step or package installation is needed to view it. GitHub Pages is configured to publish the `main` branch of [roboticrays/rr-portfolio](https://github.com/roboticrays/rr-portfolio) at `portfolio.roboticrays.com`. Domain setup and future updates are described in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Preview
 

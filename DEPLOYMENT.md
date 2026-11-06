@@ -2,6 +2,8 @@
 
 Target: a separate public `roboticrays/rr-portfolio` repository, hosted by GitHub Pages. The existing main website uses `roboticrays/roboticrays.github.io`; portfolio deployment uses the new repository.
 
+The repository has been created, the project uploaded, and Pages publishing enabled from `main` / `/(root)`, with `portfolio.roboticrays.com` configured as its custom domain. Steps 1–2 below are retained as initial-setup reference. For normal changes, use the future-update instructions.
+
 GitHub Pages hosting and HTTPS are available free for public repositories. The existing domain still needs its normal renewal. This static site requires no build command, Node installation or backend.
 
 ## 1. Create the repository and upload this project
@@ -59,6 +61,12 @@ Verify the RGB-to-wireframe hero, all three objects' photographs, wireframes and
 ## Future updates
 
 Edit the local project, commit the changes and push to `main`. GitHub Pages will redeploy automatically. Keep master scans outside the web repository and commit only prepared web assets.
+
+```bash
+git add .
+git commit -m "Update portfolio"
+git push
+```
 
 ## References
 
