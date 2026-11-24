@@ -10,6 +10,7 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dialog = $('#object-dialog');
   const pilotCollection = $('#pilot-collection');
+  const pilotCount = pilotCollection?.querySelectorAll('.pilot-card').length ?? 0;
   const model = $('#model-viewer');
   const video = $('#viewer-video');
   let selected = null;
@@ -46,7 +47,7 @@
   renderGrid();
 
   if (pilotCollection) {
-    filters.insertAdjacentHTML('beforeend', '<button class="filter" type="button" data-filter="pilots" aria-controls="pilot-collection" aria-pressed="false">Pilots</button>');
+    filters.insertAdjacentHTML('beforeend', '<button class="filter" type="button" data-filter="pilots" aria-controls="pilot-collection" aria-pressed="false">Pilots <sup>' + pad(pilotCount) + '</sup></button>');
   }
 
   filters.addEventListener('click', event => {
@@ -61,10 +62,11 @@
       const showingPilots = button.dataset.filter === 'pilots';
       pilotCollection.hidden = !showingPilots;
       $('#object-grid').hidden = showingPilots;
-      $('.collection-total').hidden = showingPilots;
       $('.toolbar-hint').hidden = showingPilots;
       $('.collection-footnote').hidden = showingPilots;
       if (showingPilots) {
+        const label = pilotCount === 1 ? 'pilot' : 'pilots';
+        $('.collection-total').textContent = `[ ${String(pilotCount).padStart(3, '0')} ${label} ]`;
         announce('Showing private pilots');
         return;
       }

@@ -47,7 +47,7 @@
 
 .pilot-card h3 {
   margin-block: 10px 8px;
-  font: 400 clamp(32px, 5vw, 50px) / 1.05 var(--display);
+  font: 700 clamp(36px, 5vw, 54px) / 1.05 var(--display);
   letter-spacing: -.05em;
 }
 
@@ -69,4 +69,49 @@
 
 .pilot-link:hover {
   background: var(--gold);
+}
+
+.section-topline > .eyebrow:first-child {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.collection-heading h2,
+.horizon-heading h2 {
+  font-size: clamp(42px, 5.3vw, 64px);
+  font-weight: 700;
+  line-height: 1.06;
+}
+
+.collection-heading h2 .italic,
+.horizon-heading h2 .italic {
+  font-weight: 700;
+}
+
+.filter[data-filter="pilots"] {
+  background: var(--gold);
+  border-color: #a57643;
+  color: #442f19;
+  font-weight: 700;
+}
+
+.filter[data-filter="pilots"]:hover {
+  background: #efd3ac;
+  border-color: #805a34;
+}
+
+.filter[data-filter="pilots"].active {
+  background: #563b24;
+  border-color: #563b24;
+  color: #fff6e9;
+}
+
+@media (max-width: 600px) {
+  .collection-heading h2 {
+    font-size: clamp(34px, 8.5vw, 44px);
+  }
+
+  .horizon-heading h2 {
+    font-size: clamp(40px, 8.7vw, 46px);
+  }
 }
