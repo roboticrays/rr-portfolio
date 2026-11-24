@@ -9,6 +9,7 @@
   const pad = n => String(n).padStart(2, '0');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dialog = $('#object-dialog');
+  const pilotCollection = $('#pilot-collection');
   const model = $('#model-viewer');
   const video = $('#viewer-video');
   let selected = null;
@@ -30,11 +31,12 @@
         </button>
         <div class="card-bottom"><a href="#object=${encodeURIComponent(item.id)}&view=image"><h3>${escape(item.title)}</h3></a><div class="card-tools"><button class="card-tool" type="button" data-open="${escape(item.id)}" data-mode="model" aria-label="Try ${escape(item.title)} wireframe">${icon('cube')}</button><button class="card-tool" type="button" data-open="${escape(item.id)}" data-mode="film" aria-label="Watch ${escape(item.title)} rendered video">${icon('play')}</button></div></div>
         <span class="card-kind">${escape(item.category)} / Reconstruction</span>
-      </article>`).join('') : `<article class="empty-collection"><div><span class="eyebrow">Bags / Upcoming pilot</span><h3>Bags are next.</h3><p>Bag scanning pilots are planned. Our first bag scans will appear here.</p><a class="text-link" href="#planned-bags">View planned studies ${icon('arrow')}</a></div><svg class="empty-bag" viewBox="0 0 96 96" aria-hidden="true">${planned.find(item => item.category === 'Bags').drawing}</svg></article>`;
+      </article>`).join('') : `<article class="empty-collection"><div><span class="eyebrow">Bags / Upcoming pilot</span><h3>Bags are next.</h3><p>Public bag scans will appear here when they’re ready.</p><a class="text-link" href="#planned-bags">View planned studies ${icon('arrow')}</a></div><svg class="empty-bag" viewBox="0 0 96 96" aria-hidden="true">${planned.find(item => item.category === 'Bags').drawing}</svg></article>`;
     $('.collection-total').textContent = `[ ${String(visible.length).padStart(3, '0')} objects ]`;
   }
 
-  $('.filters').innerHTML = ['all', ...new Set([...(window.RR_CATEGORIES || []), ...items.map(item => item.category)])].map(category => {
+  const filters = $('.filters');
+  filters.innerHTML = ['all', ...new Set([...(window.RR_CATEGORIES || []), ...items.map(item => item.category)])].map(category => {
     const count = category === 'all' ? items.length : items.filter(item => item.category === category).length;
     return `<button class="filter ${category === 'all' ? 'active' : ''}" data-filter="${escape(category)}" aria-pressed="${category === 'all'}">${category === 'all' ? 'All objects' : escape(category)} <sup>${pad(count)}</sup></button>`;
   }).join('');
@@ -43,7 +45,11 @@
   $('#year').textContent = new Date().getFullYear();
   renderGrid();
 
-  $('.filters').addEventListener('click', event => {
+  if (pilotCollection) {
+    filters.insertAdjacentHTML('beforeend', '<button class="filter" type="button" data-filter="pilots" aria-controls="pilot-collection" aria-pressed="false">Pilots</button>');
+  }
+
+  filters.addEventListener('click', event => {
     const button = event.target.closest('[data-filter]');
     if (!button) return;
     $$('.filter').forEach(filter => {
@@ -51,6 +57,18 @@
       filter.classList.toggle('active', active);
       filter.setAttribute('aria-pressed', active);
     });
+    if (pilotCollection) {
+      const showingPilots = button.dataset.filter === 'pilots';
+      pilotCollection.hidden = !showingPilots;
+      $('#object-grid').hidden = showingPilots;
+      $('.collection-total').hidden = showingPilots;
+      $('.toolbar-hint').hidden = showingPilots;
+      $('.collection-footnote').hidden = showingPilots;
+      if (showingPilots) {
+        announce('Showing private pilots');
+        return;
+      }
+    }
     renderGrid(button.dataset.filter);
     announce(`Showing ${button.dataset.filter === 'all' ? 'all objects' : button.dataset.filter + ' objects'}`);
   });

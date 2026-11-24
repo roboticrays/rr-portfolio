@@ -14,3 +14,7 @@ Thumbs.db
 # Keep large master captures outside the web repository.
 3d_models/
 rendered_imgs_1/
+
+# Local client assets and private showroom files.
+/.private-showroom/
+/pilots/
